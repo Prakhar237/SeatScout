@@ -1,73 +1,60 @@
-# Welcome to your Lovable project
+# SeatScout 🎓📚
 
-## Project info
+SeatScout is a **campus library seat booking application** designed to make studying more convenient and stress-free for students.  
+Instead of wandering around looking for an empty spot, SeatScout lets you **view real-time availability, reserve seats, and manage your bookings** across different campus libraries—all in one app.  
 
-**URL**: https://lovable.dev/projects/7856d2fb-efce-4f54-a385-35b1cb7da2d2
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- **Campus Login (UMS Integration)**  
+  Secure login with your university credentials.  
 
-**Use Lovable**
+- **Library Selection**  
+  Browse and select from multiple libraries (Central Library, Law School Library, Business School Library, Fashion School Library).  
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7856d2fb-efce-4f54-a385-35b1cb7da2d2) and start prompting.
+- **Seat Booking**  
+  View real-time availability of seats and reserve them instantly.  
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Navigation Tabs**  
+  - 🏠 **Home** – Explore libraries and availability.  
+  - ⏰ **My Bookings** – Track and manage your reservations.  
+  - 👤 **Profile** – Manage your account details.  
 
-**Use your preferred IDE**
+- **Simple & Clean UI**  
+  Built with a student-first approach for quick access and minimal distractions.  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 📸 Workflow Preview
 
-Follow these steps:
+1. **Splash Screen** – App logo and branding.  
+2. **Login Screen** – Secure UMS login with User ID & Password.  
+3. **Library Selection Screen** – Choose from multiple libraries with image cards.  
+4. **Bottom Navigation** – Home, My Bookings, Profile for easy app navigation.  
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 🎯 Goal
 
-# Step 3: Install the necessary dependencies.
-npm i
+SeatScout aims to **reduce the frustration of finding study spaces** in busy campus libraries by providing:  
+- Real-time seat tracking  
+- Hassle-free booking  
+- A smooth and intuitive user experience  
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## 🛠️ Tech Stack (Planned/Example)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Frontend:** Flutter / React Native  
+- **Backend:** Node.js / Django  
+- **Database:** PostgreSQL / Firebase  
+- **Authentication:** UMS Integration / OAuth  
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📌 Future Enhancements
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/7856d2fb-efce-4f54-a385-35b1cb7da2d2) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- Live occupancy map with seat layouts.  
+- Notifications for upcoming reservations.  
+- Group seat booking
