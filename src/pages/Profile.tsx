@@ -5,12 +5,15 @@ import { Logo } from "@/components/ui/logo";
 import { MobileContainer } from "@/components/ui/mobile-container";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
 import { Settings, Bell, HelpCircle, LogOut, User, BookOpen, Clock } from "lucide-react";
+import { useStudent } from "@/hooks/useStudent";
 
 const Profile = () => {
+  const { studentName, loading, error } = useStudent();
+  
   const user = {
-    name: "Alex Johnson",
+    name: studentName || "Loading...",
     studentId: "UMS2024001",
-    email: "alex.johnson@university.edu",
+    email: "student@university.edu",
     program: "Computer Science",
     year: "3rd Year",
   };
@@ -27,6 +30,24 @@ const Profile = () => {
     { icon: HelpCircle, label: "Help & Support", description: "Get assistance" },
   ];
 
+  if (loading) {
+    return (
+      <MobileContainer>
+        <header className="sticky top-0 z-10 bg-card/95 backdrop-blur-sm border-b border-border h-app-header">
+          <div className="flex flex-col items-center justify-center px-6 h-full">
+            <Logo size="sm" />
+          </div>
+        </header>
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+            <p className="text-muted-foreground">Loading profile...</p>
+          </div>
+        </div>
+      </MobileContainer>
+    );
+  }
+
   return (
     <MobileContainer>
       {/* Header */}
@@ -40,6 +61,17 @@ const Profile = () => {
       <div className="px-6 pt-4 pb-2 text-center">
         <h1 className="text-xl font-bold text-foreground">Profile</h1>
       </div>
+
+      {/* Error Message */}
+      {error && (
+        <div className="px-6 py-2">
+          <Card className="p-4 bg-destructive/10 border-destructive/20">
+            <p className="text-destructive text-sm">
+              Error loading profile: {error}
+            </p>
+          </Card>
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="px-6 py-2 pb-24 animate-fade-in">
