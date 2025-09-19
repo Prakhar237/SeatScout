@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* SeatScout Cream & Green Theme - All HSL Colors */
+    --background: 37 28% 88%;        /* Warm cream background */
+    --foreground: 160 100% 25%;      /* Dark forest green text */
+
+    --card: 0 0% 100%;               /* Pure white cards */
+    --card-foreground: 160 100% 25%; /* Dark green text on cards */
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 100% 25%;
+
+    /* Primary Green from reference */
+    --primary: 160 100% 25%;         /* Dark forest green */
+    --primary-foreground: 0 0% 100%; /* White text on green */
+    --primary-light: 158 64% 90%;    /* Very light green */
+    --primary-dark: 160 100% 20%;    /* Darker green */
+
+    /* Light Green accent */
+    --accent: 158 64% 52%;           /* Medium green */
+    --accent-foreground: 0 0% 100%;  /* White text */
+    --accent-light: 158 64% 85%;     /* Very light green */
+    --accent-dark: 158 64% 35%;      /* Darker green */
+
+    --secondary: 37 22% 92%;         /* Light cream */
+    --secondary-foreground: 160 100% 25%;
+
+    --muted: 37 20% 90%;             /* Muted cream */
+    --muted-foreground: 160 20% 45%; /* Muted green-gray */
+
+    --destructive: 0 65% 51%;        /* Red for errors */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 37 15% 85%;            /* Subtle cream border */
+    --input: 37 22% 94%;             /* Light cream input background */
+    --ring: 160 100% 25%;            /* Green focus ring */
+
+    --radius: 0.75rem;
+
+    /* Custom gradients and effects */
+    --gradient-primary: linear-gradient(135deg, hsl(160 100% 25%), hsl(158 64% 35%));
+    --gradient-subtle: linear-gradient(180deg, hsl(37 28% 88%), hsl(37 22% 92%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(37 15% 98%));
+    --shadow-soft: 0 4px 16px -2px rgb(160 100% 25% / 0.1);
+    --shadow-card: 0 2px 12px -2px rgb(0 0 0 / 0.05);
+    
+    /* Mobile app specific */
+    --app-header-height: 4rem;
+    --bottom-nav-height: 4.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 160 25% 8%;        /* Very dark green */
+    --foreground: 37 28% 88%;        /* Cream text */
+
+    --card: 160 20% 12%;             /* Dark green card */
+    --card-foreground: 37 28% 88%;   /* Cream text on cards */
+
+    --popover: 160 20% 12%;
+    --popover-foreground: 37 28% 88%;
+
+    --primary: 158 64% 52%;          /* Medium green in dark mode */
+    --primary-foreground: 0 0% 100%; /* White text */
+    --primary-light: 160 20% 15%;    /* Dark green light */
+    --primary-dark: 158 64% 35%;     /* Darker green */
+
+    --accent: 158 64% 65%;           /* Lighter green in dark */
+    --accent-foreground: 0 0% 100%;  /* White text */
+    --accent-light: 160 20% 18%;     /* Dark green accent light */
+    --accent-dark: 158 64% 45%;      /* Medium green */
+
+    --secondary: 160 15% 15%;        /* Dark green secondary */
+    --secondary-foreground: 37 28% 88%;
+
+    --muted: 160 10% 18%;            /* Muted dark green */
+    --muted-foreground: 37 15% 60%;  /* Muted cream */
+
+    --destructive: 0 65% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 160 15% 20%;           /* Dark green border */
+    --input: 160 15% 15%;            /* Dark green input */
+    --ring: 158 64% 52%;             /* Green focus ring */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
