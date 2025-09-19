@@ -4,8 +4,8 @@ import { MobileContainer } from "@/components/ui/mobile-container";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
 import centralLibraryImg from "@/assets/CLB.png";
 import lawLibraryImg from "@/assets/school of law.png";
-import businessLibraryImg from "@/assets/business-library.jpg";
-import fashionLibraryImg from "@/assets/fashion-library.jpg";
+import businessLibraryImg from "@/assets/BIZ.png";
+import fashionLibraryImg from "@/assets/FDES.png";
 
 const Libraries = () => {
   const libraries = [
