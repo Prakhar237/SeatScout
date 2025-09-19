@@ -29,8 +29,8 @@ const LibraryFloors = () => {
       ];
 
   const handleFloorSelect = (level: number) => {
-    // Navigate to seat selection for the specific floor
-    navigate(`/library/${libraryName}/floor/${level}`);
+    // Navigate to seat booking for the specific floor
+    navigate(`/library/${libraryName}/floor/${level}/seats`);
   };
 
   const handleBack = () => {
