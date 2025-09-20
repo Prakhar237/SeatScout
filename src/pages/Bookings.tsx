@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Logo } from "@/components/ui/logo";
 import { MobileContainer } from "@/components/ui/mobile-container";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
-import { Clock, MapPin, Calendar } from "lucide-react";
+import { useBookings } from "@/hooks/useBookings";
+import { Clock, MapPin, Calendar, X } from "lucide-react";
 
 const Bookings = () => {
-  const bookings: any[] = [];
+  const { bookings, removeBooking } = useBookings();
+  const [cancellingId, setCancellingId] = useState<string | null>(null);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -17,6 +20,27 @@ const Bookings = () => {
       default:
         return "bg-secondary text-secondary-foreground";
     }
+  };
+
+  const handleCancelBooking = async (bookingId: string) => {
+    setCancellingId(bookingId);
+    try {
+      await removeBooking(bookingId);
+    } catch (error) {
+      console.error('Error cancelling booking:', error);
+      alert('Failed to cancel booking. Please try again.');
+    } finally {
+      setCancellingId(null);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      weekday: 'short', 
+      month: 'short', 
+      day: 'numeric' 
+    });
   };
 
   return (
@@ -41,17 +65,28 @@ const Bookings = () => {
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3 className="font-semibold text-foreground">{booking.library}</h3>
-                  <p className="text-sm text-muted-foreground">Seat {booking.seatNumber}</p>
+                  <p className="text-sm text-muted-foreground">Seat {booking.seatNumber} • Floor {booking.floor}</p>
                 </div>
-                <Badge className={getStatusColor(booking.status)}>
-                  {booking.status === "active" ? "Active" : "Upcoming"}
-                </Badge>
+                <div className="flex items-center gap-2">
+                  <Badge className={getStatusColor(booking.status)}>
+                    {booking.status === "active" ? "Active" : "Upcoming"}
+                  </Badge>
+                  <button
+                    onClick={() => handleCancelBooking(booking.id)}
+                    disabled={cancellingId === booking.id}
+                    className={`p-1 hover:bg-destructive/10 rounded transition-colors ${
+                      cancellingId === booking.id ? 'opacity-50 cursor-not-allowed' : ''
+                    }`}
+                  >
+                    <X className="h-4 w-4 text-destructive" />
+                  </button>
+                </div>
               </div>
 
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm text-foreground">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span>{booking.date}</span>
+                  <span>{formatDate(booking.date)}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm text-foreground">
                   <Clock className="h-4 w-4 text-muted-foreground" />
@@ -59,7 +94,7 @@ const Bookings = () => {
                 </div>
                 <div className="flex items-center gap-2 text-sm text-foreground">
                   <MapPin className="h-4 w-4 text-muted-foreground" />
-                  <span>Level 2, Study Area</span>
+                  <span>Floor {booking.floor} • Seat {booking.seatNumber}</span>
                 </div>
               </div>
 

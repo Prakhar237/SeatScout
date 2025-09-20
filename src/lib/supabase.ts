@@ -19,3 +19,64 @@ export interface SeatsAvailableRecord {
   SEATS_BIZ: number
   SEATS_FASHION: number
 }
+
+// Function to update seats in the database
+export const updateSeatsInDatabase = async (libraryName: string, operation: 'increment' | 'decrement') => {
+  try {
+    let columnName: string;
+    
+    // Map library names to database column names
+    switch (libraryName) {
+      case 'Central Library':
+        columnName = 'SEATS_CENTRAL_LIBRARY';
+        break;
+      case 'Law School Library':
+        columnName = 'SEATS_LAWSCHOOL';
+        break;
+      case 'Business School Library':
+        columnName = 'SEATS_BIZ';
+        break;
+      case 'Fashion School Library':
+        columnName = 'SEATS_FASHION';
+        break;
+      default:
+        throw new Error(`Unknown library: ${libraryName}`);
+    }
+
+    // First, get the current seats data
+    const { data: currentData, error: fetchError } = await supabase
+      .from('SEATS AVAILABLE')
+      .select(columnName)
+      .limit(1)
+      .single();
+
+    if (fetchError) {
+      throw fetchError;
+    }
+
+    if (!currentData) {
+      throw new Error('No seats data found');
+    }
+
+    // Calculate new seat count
+    const currentSeats = currentData[columnName as keyof SeatsAvailableRecord] as number;
+    const newSeatCount = operation === 'decrement' 
+      ? Math.max(0, currentSeats - 1)  // Ensure it doesn't go below 0
+      : currentSeats + 1;
+
+    // Update the seats in the database
+    const { error: updateError } = await supabase
+      .from('SEATS AVAILABLE')
+      .update({ [columnName]: newSeatCount })
+      .eq('id', 1); // Assuming there's only one record with id 1
+
+    if (updateError) {
+      throw updateError;
+    }
+
+    return { success: true, newSeatCount };
+  } catch (error) {
+    console.error('Error updating seats in database:', error);
+    throw error;
+  }
+};
